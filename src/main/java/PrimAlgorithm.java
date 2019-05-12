@@ -60,13 +60,6 @@ public class PrimAlgorithm {
     } //Graph 생성자 끝
 
 
-    /**  Composing methods // Extract method  **/
-    public void setup_near(Object [] near){
-        for(int i=0; i<size; i++) {
-            near[i]=-1; //near은 초기에 -1값으로 초기화
-        }
-    }
-
 
     public void prim(int v) { //들어온 int v값을 시작 정점으로
         Object [] near=new Object[size]; /*각 정점에 대해서 TV에 속해있는 정점들 중 가장 가까운 정점을 나타내는 배열 N을 넣기 위해 object타입으로 선언했다. */
@@ -80,9 +73,10 @@ public class PrimAlgorithm {
         int index=v;
         float sum =0;
 
-
+        for(int i=0; i<size; i++) {
 /**  Composing methods // Extract method  **/
-        setup_near(near);
+            near[i]=-1; //near은 초기에 -1값으로 초기화
+        }
 
 
         if(size==1) {
@@ -96,6 +90,7 @@ public class PrimAlgorithm {
                 near[v]="N";
                 System.out.println("< 신장트리 > ");
                 System.out.println("시작정점 : "+v);
+
 
                 while(selectEdgeCount<n-1) {
                     /*
@@ -111,12 +106,11 @@ public class PrimAlgorithm {
                         if(include[j]) {
                             for(int k=0;k<size;k++) {
 /**  Composing methods // Extract Variable  **/
-                                float myadjacency = adjacency[j][k];
-                                if(myadjacency!=Integer.MAX_VALUE && myadjacency > 0 && !include[k]) {
+                                if(adjacency[j][k]!=Integer.MAX_VALUE&&adjacency[j][k]>0&&!include[k]) {
                                     near[k]=j;
 /**  Composing methods // Extract Variable  **/
-                                    if(myadjacency < minWeight) {
-                                        minWeight = myadjacency;
+                                    if(adjacency[j][k]<minWeight) {
+                                        minWeight = adjacency[j][k];
                                         minIndex=k;
                                         index = j;
                                     }
@@ -135,6 +129,7 @@ public class PrimAlgorithm {
                     minWeight=Integer.MAX_VALUE; //minWeight는 다음 while루프를 위해 다시 무한대 값으로 초기화
 
                 }//while(selectEdgeCount<=n-1)
+
 
 
             }
