@@ -56,7 +56,11 @@ public class PrimAlgorithm {
 
     } //Graph 생성자 끝
 
-
+    public void setup_near(Object [] near){
+        for(int i=0; i<size; i++) {
+            near[i]=-1; //near은 초기에 -1값으로 초기화
+        }
+    }
 
     public void prim(int v) { //들어온 int v값을 시작 정점으로
         Object [] near=new Object[size]; /*각 정점에 대해서 TV에 속해있는 정점들 중 가장 가까운 정점을 나타내는 배열 N을 넣기 위해 object타입으로 선언했다. */
@@ -69,10 +73,9 @@ public class PrimAlgorithm {
         int index=v;
         float sum =0;
 
-        for(int i=0; i<size; i++) {
 /**  Composing methods // Extract method  **/
-            near[i]=-1; //near은 초기에 -1값으로 초기화
-        }
+
+        setup_near(near);
 
 
         if(size==1) {
