@@ -105,10 +105,11 @@ public class PrimAlgorithm {
                         if(include[j]) {
                             for(int k=0;k<size;k++) {
 /**  Composing methods // Extract Variable  **/
-                                if(adjacency[j][k]!=Integer.MAX_VALUE&&adjacency[j][k]>0&&!include[k]) {
+                                float myadjacency = adjacency[j][k];
+                                if(myadjacency!=Integer.MAX_VALUE&&adjacency[j][k]>0&&!include[k]) {
                                     near[k]=j;
 /**  Composing methods // Extract Variable  **/
-                                    if(adjacency[j][k]<minWeight) {
+                                    if(myadjacency<minWeight) {
                                         minWeight = adjacency[j][k];
                                         minIndex=k;
                                         index = j;
